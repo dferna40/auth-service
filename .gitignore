@@ -1,10 +1,17 @@
-HELP.md
+# Archivos generados por Spring y Maven
 target/
+build/
+*.log
+*.class
+*.jar
+*.war
+
+# Configuración del wrapper de Maven
 .mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
-### STS ###
+# Archivos de configuración del IDE: STS
 .apt_generated
 .classpath
 .factorypath
@@ -13,21 +20,27 @@ target/
 .springBeans
 .sts4-cache
 
-### IntelliJ IDEA ###
-.idea
+# IntelliJ IDEA
+.idea/
 *.iws
 *.iml
 *.ipr
 
-### NetBeans ###
+# NetBeans
 /nbproject/private/
 /nbbuild/
 /dist/
 /nbdist/
 /.nb-gradle/
-build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### VS Code ###
+# Visual Studio Code
 .vscode/
+
+# Archivos temporales del sistema
+.DS_Store
+*.swp
+
+# Variables sensibles
+.env
