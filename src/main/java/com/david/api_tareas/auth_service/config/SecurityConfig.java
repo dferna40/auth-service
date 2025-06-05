@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 // ✅ Clase de configuración de seguridad para el microservicio de autenticación.
 // Define el encoder de contraseñas, la gestión de autenticación y el control de acceso a rutas.
@@ -29,6 +31,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
+        		.cors(Customizer.withDefaults()) // 👈 habilitar CORS
                 .csrf(csrf -> csrf.disable()) // Desactiva CSRF porque estamos trabajando con APIs
                 .authorizeHttpRequests(auth -> auth
                         // Rutas públicas sin autenticación
@@ -41,8 +44,21 @@ public class SecurityConfig {
                         // El resto requiere estar autenticado
                         .anyRequest().authenticated()
                 )
-                .httpBasic(Customizer.withDefaults()) // Habilita autenticación básica HTTP (útil para pruebas, puede eliminarse)
                 .build();
+    }
+    
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                    .allowedOrigins("http://localhost:3000")
+                    .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                    .allowedHeaders("*")
+                    .allowCredentials(true);
+            }
+        };
     }
 
     // Bean para codificar contraseñas usando BCrypt (seguro y estándar en Spring Security)
