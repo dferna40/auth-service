@@ -28,7 +28,7 @@ public class Usuario {
     @Column(unique = true) // Email debe ser único en la base de datos
     private String email; // Identificador único y usado para autenticación
 
-    private String puesto; // Descripción del cargo o posición del usuario
+    //private String puesto; // Descripción del cargo o posición del usuario
 
     @Column(name = "fecha_creacion") // Fecha en que se creó el usuario
     private LocalDateTime fechaCreacion;

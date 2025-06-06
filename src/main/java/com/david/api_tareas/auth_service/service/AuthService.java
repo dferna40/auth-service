@@ -61,7 +61,7 @@ public class AuthService {
 				.password(passwordEncoder.encode(authRequest.getPassword())) // Encripta la contraseña
 				.role("USER") // Rol por defecto
 				.nombre(authRequest.getNombre())
-				.puesto(authRequest.getPuesto())
+				//.puesto(authRequest.getPuesto())
 				.fechaCreacion(LocalDateTime.now())
 				.fechaModificacion(LocalDateTime.now())
 				.build();

@@ -30,11 +30,11 @@ public class UserInfoController {
         return ResponseEntity.ok(new UserInfoDTO(
                 usuario.getEmail(),
                 usuario.getNombre(),
-                usuario.getPuesto(),
+                //usuario.getPuesto(),
                 usuario.getRole()
         ));
     }
 
     // DTO interno para devolver datos del usuario autenticado
-    private record UserInfoDTO(String email, String nombre, String puesto, String role) {}
+    private record UserInfoDTO(String email, String nombre, String role) {}
 }
