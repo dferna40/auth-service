@@ -34,6 +34,7 @@ public class AuthController {
 	// Endpoint para registrar nuevos usuarios
 	@PostMapping("/register")
 	public ResponseEntity<AuthResponse> register(@RequestBody AuthRequest request) {
+		System.out.println("📩 Recibida solicitud de registro: " + request.getEmail());
 		// Llama al servicio y devuelve el token generado en la respuesta
 		return ResponseEntity.ok(authService.register(request));
 	}
